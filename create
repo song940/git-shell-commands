@@ -1,0 +1,16 @@
+#!/bin/bash
+
+name=$1
+host=lsong.me
+
+if [[ -z $name ]]; then
+  read -p "project name: " name
+fi
+
+repo="${name}.git"
+
+if [[ -d "$repo"  ]]; then
+  echo "ERR: Project $name already exist"
+fi
+
+mkdir -p "$repo" && cd $repo && git --bare init > /dev/null && echo "repository: git@$host:$repo";
